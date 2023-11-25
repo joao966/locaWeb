@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Display_Image__c</fullName>
+    <description>Logo da loja</description>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(&quot;https://drive.google.com/file/d/1XMiWfSCLkg8WbF4YeeesRR14mvrZJQlW/view?usp=sharing&quot;, &quot;logo da loja&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Display Image</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

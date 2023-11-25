@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>contact_inadimplente</fullName>
+    <active>true</active>
+    <description>Não permite que usuário inadimplente faça aluguéis</description>
+    <errorConditionFormula>ISPICKVAL(Contact__r.contact_status__c, &quot;Defaulting&quot;)</errorConditionFormula>
+    <errorMessage>Um usuário inadimplente não pode alugar um filme! Por favor, regularize sua situação.</errorMessage>
+</ValidationRule>

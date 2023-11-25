@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Console__c</fullName>
+    <externalId>false</externalId>
+    <label>Console</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PS5</fullName>
+                <default>false</default>
+                <label>PS5</label>
+            </value>
+            <value>
+                <fullName>Xbox</fullName>
+                <default>false</default>
+                <label>Xbox</label>
+            </value>
+            <value>
+                <fullName>Nintendo Wii</fullName>
+                <default>false</default>
+                <label>Nintendo Wii</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

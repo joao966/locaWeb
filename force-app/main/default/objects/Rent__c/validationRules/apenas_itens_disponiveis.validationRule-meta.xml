@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>apenas_itens_disponiveis</fullName>
+    <active>true</active>
+    <description>Essa validação não permite aluguéis de itens indisponíveis</description>
+    <errorConditionFormula>ISPICKVAL(Inventory_Items__r.Status__c, &quot;Rented&quot;)</errorConditionFormula>
+    <errorMessage>Esse item já está alugado! Escolha outro ou faça uma reserva.</errorMessage>
+</ValidationRule>

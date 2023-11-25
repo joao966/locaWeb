@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>close_date_maior_que_hoje</fullName>
+    <active>true</active>
+    <description>Essa validação impede que uma data de entrega seja maior que o hoje</description>
+    <errorConditionFormula>Close_Date__c &lt; TODAY()</errorConditionFormula>
+    <errorMessage>A data de entrega não pode ser menor ou igual à data de hoje. Por favor, insira outra data.</errorMessage>
+</ValidationRule>
