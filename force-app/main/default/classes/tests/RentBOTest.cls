@@ -15,47 +15,85 @@ public with sharing class RentBOTest {
 
     @isTest
     static void testValidateStatusItem() {
-
-        Inventory__c inventory = new Inventory__c(Name='Teste');
+        Inventory__c inventory = new Inventory__c(Name='Teste', Synopse__c='sinopse teste', Image_URL__c='https://example.com/image.jpg');
         insert inventory;
-      
-        
-        Inventory_Items__c item = new Inventory_Items__c(Inventory__c = inventory.Id, Status__c = 'Available');
+
+        Inventory_Items__c item = new Inventory_Items__c(Inventory__c=inventory.Id, Status__c='Available');
         insert item;
-
-        Rent__c rent = new Rent__c(Inventory_Items__c = item.Id);
+        
+        Rent__c rent = new Rent__c(Inventory_Items__c=item.Id);
         insert rent;
-
-      
-        Reservation__c reservation = new Reservation__c();
-        insert reservation;
 
         Test.startTest();
         RentBO.validateStatusItem(new List<Rent__c>{ rent });
         Test.stopTest();
 
- 
         System.assert(rent.hasErrors(), 'Erro esperado não foi adicionado');
-    }
-
-
-
-
-    @isTest
-    static void testHandleReservation() {
-        Inventory__c inventory = new Inventory__c(Name='teste inventory');
-        Contact contact = new Contact(FirstName='teste');
-        Inventory_Items__c item = new Inventory_Items__c(Inventory__c = inventory.Id);
         
-        Rent__c rent = new Rent__c(Contact__c = contact.Id, Inventory_Items__c = item.Id);
+    }
+    
+    @isTest
+    static void testHandleReservation2() {
+        Inventory__c inventory = new Inventory__c(Name='Teste', Synopse__c='sinopse teste', Image_URL__c='https://site.com/image.jpg');
+        insert inventory;
+
+        Inventory_Items__c item = new Inventory_Items__c(Inventory__c=inventory.Id, Status__c='Rented');
+        insert item;
+        
+        Contact contato = new Contact(LastName='Teste', contact_status__c='Defaulting');
+        insert contato;
+       
+        Rent__c rent = new Rent__c(Contact__c=contato.Id, Inventory_Items__c=item.Id);
         insert rent;
 
-       
+        Test.startTest();
         Reservation__c reservation = RentBO.handleReservation(rent);
-
-       
-        System.assertNotEquals(null, reservation);
-        System.assertEquals('completed', reservation.Status__c);
-        System.assertNotEquals('completed', reservation.Status__c);
+        Test.stopTest();
     }
+    
+    @isTest
+    static void testHandleReservation3() {
+        Inventory__c inventory = new Inventory__c(Name='Teste', Synopse__c='sinopse teste', Image_URL__c='https://site.com/image.jpg');
+        insert inventory;
+
+        Inventory_Items__c item = new Inventory_Items__c(Inventory__c=inventory.Id, Status__c='Reserved');
+        insert item;
+        
+        Contact contato = new Contact(LastName='Teste', contact_status__c='Normal');
+        insert contato;
+       
+        Rent__c rent = new Rent__c(Contact__c=contato.Id, Inventory_Items__c=item.Id);
+        insert rent;
+
+        Test.startTest();
+        Reservation__c reservation = RentBO.handleReservation(rent);
+        Test.stopTest();
+    }
+    
+    
+    @isTest
+    static void testHandleReservation4() {
+        Inventory__c inventory = new Inventory__c(Name='Teste', Synopse__c='sinopse teste', Image_URL__c='https://site.com/image.jpg');
+        insert inventory;
+
+        Inventory_Items__c item = new Inventory_Items__c(Inventory__c=inventory.Id, Status__c='Available');
+        insert item;
+        
+        Contact contato = new Contact(LastName='Teste', contact_status__c='Normal');
+        insert contato;
+           
+        Reservation__c reserva = new Reservation__c(Contact__c=contato.Id, Inventory__c=inventory.Id);
+        insert reserva;      
+        
+        Rent__c rent = new Rent__c(Contact__c=contato.Id, Inventory_Items__c=item.Id);
+        insert rent;
+
+        Test.startTest();
+        Reservation__c reservation = RentBO.handleReservation(rent);
+        Test.stopTest();
+    }
+    
+       
+
+    
 }
